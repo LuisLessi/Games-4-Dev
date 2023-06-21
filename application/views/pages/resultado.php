@@ -7,7 +7,9 @@
 	</div>
 
 	<div class="table-responsive">
-		<table class="table table-bordered table-hover">
+		
+			<tbody>
+			<table class="table table-bordered table-hover">
 			<thead>
 				<tr>
 					<th>#</th>
@@ -19,39 +21,26 @@
 				</tr>
 			</thead>
 			<tbody>
-			<table class="table table-bordered table-hover">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>Name</th>
-					<th>Price</th>
-					<th>Developer</th>
-					<th>realease_date</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php foreach($results as $result) : ?>
+				<?php foreach($results as $game) : ?>
                     <tr>
-                        <td><?= $result['id'] ?></td>
-                        <td><?= $result['name'] ?></td>
-                        <td><?= $result['price'] ?></td>
-                        <td><?= $result['developer'] ?></td>
-                        <td><?= $result['release_date'] ?></td>
+                        <td><?= $game['id'] ?></td>
+                        <td><?= $game['name'] ?></td>
+                        <td><?= $game['price'] ?></td>
+						<td><?= $game['category']?></td>
+                        <td><?= $game['developer'] ?></td>
 						<td>
-							<a href="<?= base_url() ?>games/edit/<?= $result['id'] ?>"
-							class="btn-sm btn-warning">
-							<i class="fas fa-pencil-alt"></i></a>
-
-							<a href="<?= base_url() ?>games/delete/<?= $result['id'] ?>"
-							class="btn-sm btn-danger" onclick="return confirmDelete('<?= $result['name'] ?>');">
-							<i class="fas fa-trash-alt"></i></a>
-							
+							<?php if($_SESSION["user_data"]["user_id"] === $game["user_id"]) : ?>
+								<a href="<?= base_url() ?>games/edit/<?= $game["id"] ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+								<a href="<?= base_url() ?>games/delete/<?= $game['id'] ?>"
+							class="btn btn-sm btn-danger" onclick="return confirmDelete('<?= $game['name'] ?>');">
+							<i class="fas fa-trash-alt"></i></a>							<?php else : ?>
+								<button disabled type="button" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+								<button disabled type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+							<?php endif; ?>
 						</td>
 					</tr>
                 <?php endforeach;?>
 			</tbody>
-		</table>
 			</tbody>
 		</table>
 	</div>

@@ -45,12 +45,12 @@
             </div>
 
             <div class="col-md-6">
-                <div class="form-group">
-                    <label for="release_date">Release Date</label>
-                    <input type="text" class="form-control" name="release_date" id="release_date" placeholder="Release Date"
-                    value="<?= isset($game) ? $game["release_date"] : "" ?>" required>
-                </div>
-            </div>
+						<div class="form-group">
+							<label for="category">Category</label>
+							<input type="text" class="form-control" name="category" id="category" placeholder="Category" value="<?= isset($game["category"]) ? $game["category"] : "" ?>" required>
+						</div>
+					</div>
+
 
             <div class="col-md-6">
                 <button type="submit" class="btn btn-success btn-xs"><i class="fas fa-check"></i> Save</button>

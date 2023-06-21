@@ -37,21 +37,22 @@ class Games extends CI_Controller {
         
         
         // Obtenha os valores dos campos do formulário
-        $name = $this->input->post('name');
-        $description = $this->input->post('description');
-        $release_date = $this->input->post('release_date');
-        $price = $this->input->post('price');
-        $developer = $this->input->post('developer');
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+        $category = $_POST['category'];
+        $price = $_POST['price'];
+        $developer = $_POST['developer'];
 
-		$user_id = 1;
+		$user_id = $this->session->userdata("user_data")["user_id"];
+
 
         
         // Chame o método de inserção do model
-		$inserted = $this->games_model->insert($name, $description, $release_date, $price, $developer, $user_id);
+		$inserted = $this->games_model->insert($name, $description, $category, $price, $developer, $user_id);
         
         if ($inserted) {
             // Inserção bem-sucedida, redirecione para a página de jogos
-            redirect('games');
+            redirect('dashboard');
         } else {
             // Ocorreu um erro na inserção, você pode lidar com isso de acordo com sua lógica
             echo "Erro ao inserir o jogo.";
@@ -84,5 +85,17 @@ class Games extends CI_Controller {
 		
 		$this->games_model->destroy($id);
 		redirect('games');
+	}
+
+	public function mygames()
+	{
+		$data["games"]  = $this->games_model->mygames_index();
+		$data["title"] = "My Games";
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/nav-top', $data);
+		$this->load->view('pages/my-games', $data);
+		$this->load->view('templates/footer', $data);
+		$this->load->view('templates/js', $data);
 	}
 }

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Games 4 Devs</a>
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/dashboard">Games 4 Devs</a>
 	<div>
 		<form action="<?= base_url() ?>dashboard/search" method="post">
 			<input class="form-control form-control-dark" type="text" name="busca" id="busca" placeholder="Search" aria-label="Search" value="">
@@ -36,13 +36,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="<?= base_url()?>users">
               <span data-feather="shopping-cart"></span>
               Users
             </a>
 					</li>
 					<li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="<?= base_url()?>games/mygames">
               <span data-feather="shopping-cart"></span>
               My Games
             </a>

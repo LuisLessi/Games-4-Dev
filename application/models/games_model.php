@@ -8,12 +8,12 @@ class Games_model extends CI_Model {
         return $this->db->get("tb_games")->result_array();
     }
 
-    public function insert($name, $description, $release_date, $price, $developer, $user_id)
+    public function insert($name, $description, $category, $price, $developer, $user_id)
     {
         $data = array(
             'name' => $name,
             'description' => $description,
-            'release_date' => $release_date,
+            'category' => $category,
             'price' => $price,
             'developer' => $developer,
             'user_id' => $user_id
@@ -51,5 +51,11 @@ class Games_model extends CI_Model {
             return $this->db->get('tb_games')->result_array();
         }
         
+        public function mygames_index()
+		{
+			$this->db->where("user_id", $_SESSION["user_data"]["user_id"]);
+			$this->db->order_by("id", "DESC");
+			return $this->db->get("tb_games")->result_array();
+		}
 
 }
