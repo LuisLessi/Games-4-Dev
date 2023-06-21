@@ -1,4 +1,4 @@
-	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 	<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 		<h1 class="h2">Dashboard</h1>
 		<div class="btn-toolbar mb-2 mb-md-0">
@@ -32,7 +32,16 @@
                         <td><?= $game['price'] ?></td>
                         <td><?= $game['developer'] ?></td>
                         <td><?= $game['release_date'] ?></td>
-                        <td>XXXXXX</td>
+						<td>
+							<a href="<?= base_url() ?>games/edit/<?= $game['id'] ?>"
+							class="btn-sm btn-warning">
+							<i class="fas fa-pencil-alt"></i></a>
+
+							<a href="<?= base_url() ?>games/delete/<?= $game['id'] ?>"
+							class="btn-sm btn-danger" onclick="return confirmDelete('<?= $game['name'] ?>');">
+							<i class="fas fa-trash-alt"></i></a>
+							
+						</td>
 					</tr>
                 <?php endforeach;?>
 			</tbody>
@@ -59,3 +68,9 @@
 		</table>
 	</div>
 </main>
+
+<script>
+function confirmDelete(gameName) {
+   return confirm("Tem certeza que deseja excluir o jogo: "+ gameName + "?"); // Exibe o alerta de confirmação
+}
+</script>

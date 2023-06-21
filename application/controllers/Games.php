@@ -10,8 +10,8 @@ class Games extends CI_Controller {
 	}
 
 	public function index()
-	{
-		
+	{	
+		permission();
 		$data["games"] = $this->games_model->index();
 		$data["title"] = "Games";
         $this->load->view('templates/header', $data);

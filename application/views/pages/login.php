@@ -35,12 +35,16 @@
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.4/examples/sign-in/signin.css" rel="stylesheet">
   </head>
+
   <body class="text-center">
-    <form class="form-signin" method="post" action="">
-  <img class="mb-4" src="https://getbootstrap.com/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <form class="form-signin" method="post"  action="<?php echo base_url('login/validAccount'); ?>">
+  <img class="mb-4" src="../../../assets/logo.png" alt="" width="72" height="72">
   <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
   <label for="inputEmail" class="sr-only">Email address</label>
   <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+ 
+  <br>
+ 
   <label for="inputPassword" class="sr-only">Password</label>
   <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
   <div class="checkbox mb-3">
@@ -49,10 +53,14 @@
     </label>
   </div>
 	<p>
-		<a href="">Don't Have an Account?</a>
+		<a href="<?= base_url() ?>signup">Don't Have an Account?</a>
 	</p>
   <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+  <?php if ($this->session->flashdata('alert')) : ?>
+        <div class="alert alert-danger mt-3"><?php echo $this->session->flashdata('alert'); ?></div>
+    <?php endif; ?>
+  <p class="mt-5 mb-3 text-muted">&copy; 2023</p>
 </form>
+
 </body>
 </html>

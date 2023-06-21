@@ -43,4 +43,13 @@ class Games_model extends CI_Model {
             }
         }
     
+        public function search($searchTerm)
+        {
+            // Use o termo de pesquisa para buscar jogos no banco de dados
+            $this->db->like('name', $searchTerm); // Por exemplo, pesquisar pelo nome do jogo
+        
+            return $this->db->get('tb_games')->result_array();
+        }
+        
+
 }
